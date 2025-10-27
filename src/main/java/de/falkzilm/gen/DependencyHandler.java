@@ -42,10 +42,10 @@ public class DependencyHandler {
                 var output = runner.getOutput().trim();
                 String requiredVersion = dep.version();
 
-                if (requiredVersion.endsWith("+")) {
-                    String actualVersion = getActualStringForDep(dep.name(), output);
-                    checkItemConsole.detected(actualVersion);
+                String actualVersion = getActualStringForDep(dep.name(), output);
+                checkItemConsole.detected(actualVersion);
 
+                if (requiredVersion.endsWith("+")) {
                     if (actualVersion != null && !actualVersion.isBlank()) {
                         int requiredMajorVersion = Integer.parseInt(requiredVersion.replace("+", ""));
                         int actualMajorVersion = Integer.parseInt(actualVersion);
@@ -60,9 +60,11 @@ public class DependencyHandler {
                         checkItemConsole.fail("Failed to extract version information");
                     }
                 } else {
-                    if (!output.contains(dep.version())) {
+                    if (!output.contains(dep.version()) && !dep.optional()) {
                         checkItemConsole.fail("Specific version was requested and is not meet");
                         System.exit(1);
+                    } else if (dep.optional()) {
+                        checkItemConsole.fail("Not right version");
                     } else {
                         checkItemConsole.ok();
                     }
