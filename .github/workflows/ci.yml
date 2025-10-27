@@ -76,11 +76,11 @@ jobs:
           - os: macos-latest
             platform: macos
             artifact_name: qboot-macos
-            build_cmd: ./mvnw package -Dnative -DskipTests
+            build_cmd: ./mvnw package -Dnative -DskipTests -Dquarkus.native.container-build=false
           - os: windows-latest
             platform: windows
             artifact_name: qboot-windows.exe
-            build_cmd: ./mvnw.cmd package -Dnative -DskipTests
+            build_cmd: ./mvnw.cmd package -Dnative -DskipTests -Dquarkus.native.container-build=false
 
     runs-on: ${{ matrix.os }}
     needs: test
