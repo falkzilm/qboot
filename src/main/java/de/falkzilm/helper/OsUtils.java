@@ -145,7 +145,7 @@ public class OsUtils {
      * @return CommandLine for Maven execution
      */
     public static CommandLine createMavenCommand(String mavenArgs) {
-        String mvnCommand = IS_WINDOWS ? "mvnw.cmd" : "./mvnw";
+        String mvnCommand = IS_WINDOWS ? "mvnw.cmd" : "mvn";
         return createShellCommand(mvnCommand + " " + mavenArgs);
     }
 
