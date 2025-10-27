@@ -328,16 +328,15 @@ public class MyFrameworkEngine extends GenerationEngine {
 
 #### 2. Register the Engine
 
-Add your engine to `EngineFactory.java`:
+Annotate your Engine with `@FrameworkUsage()`:
 
 ```java
-public static GenerationEngine getEngine(String framework) {
-    return switch (framework) {
-        case "quarkus" -> new QuarkusEngine();
-        case "angular" -> new AngularEngine();
-        case "myframework" -> new MyFrameworkEngine();  // Add your engine
-        default -> throw new IllegalArgumentException("Unknown framework: " + framework);
-    };
+import de.falkzilm.gen.Framework;
+import de.falkzilm.gen.FrameworkUsage;
+
+@FrameworkUsage(Framework.MYFRAMEWORK)
+public class NewEngine {
+
 }
 ```
 
@@ -496,7 +495,7 @@ SOFTWARE.
   - ✅ ASP.NET Core (.NET web framework)
   - ✅ Kotlin/Ktor (Modern JVM language)
 - ✅ Multi-workspace support
-- ✅ Comprehensive test suite (99 tests)
+- ✅ Comprehensive test suite
 - 🚧 Template repository/marketplace
 - 📋 Interactive template wizard
 
