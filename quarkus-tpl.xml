@@ -1,0 +1,58 @@
+<qtemplate>
+    <workspaces>
+        <workspace>
+            <general>
+                <framework>quarkus</framework>
+                <projectName>backend</projectName>
+                <projectPackage>de.falkzilm</projectPackage>
+                <frameworkVersion>3.28.4</frameworkVersion>
+            </general>
+            <dependencies name="pre">
+                <java>21+</java>
+                <quarkus optional="true">3.28.4</quarkus>
+                <mvn>3+</mvn>
+            </dependencies>
+            <dependencies name="post">
+                <quarkus-config-yaml extension="true" />
+                <quarkus-rest-jackson extension="true" />
+                <lombok packageName="org.projectlombok:lombok">1.18.30</lombok>
+            </dependencies>
+            <structure value="custom">
+                <changeset type="add">
+                    <path name="src/main/resources/application.yaml"><![CDATA[apiVersion:
+  number: 1]]></path>
+                    <path name="src/main/java/de/falkzilm/dto/" autocreate="true" />
+                    <path name="src/main/java/de/falkzilm/dto/Version.java"><![CDATA[package de.falkzilm.dto;
+
+public record Version(String versionNumber) {
+}]]></path>
+                    <path name="src/main/java/de/falkzilm/Greeting.java"><![CDATA[package de.falkzilm;
+
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+import jakarta.ws.rs.core.MediaType;
+import de.falkzilm.dto.Version;
+
+@Path("/api")
+public class Greeting {
+
+    @ConfigProperty(name = "apiVersion.number")
+    Integer apiVersion;
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Version info() {
+      return new Version(apiVersion.toString());
+    }
+}]]></path>
+                </changeset>
+                <changeset type="remove">
+                    <path name="src/main/java/de/falkzilm/GreetingResource.java" />
+                    <path name="src/main/resources/application.properties" />
+                </changeset>
+            </structure>
+        </workspace>
+    </workspaces>
+</qtemplate>

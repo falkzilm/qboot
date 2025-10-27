@@ -1,0 +1,22 @@
+<qtemplate>
+    <workspaces>
+        <workspace>
+            <general>
+                <framework>angular</framework>
+                <projectName>frontend</projectName>
+                <frameworkVersion>20.3.6</frameworkVersion>
+            </general>
+            <dependencies name="pre">
+                <node>20+</node>
+            </dependencies>
+            <dependencies name="post">
+                <ngxs packageName="@ngxs/store">latest</ngxs>
+            </dependencies>
+            <structure value="custom">
+                <changeset type="add">
+                    <path name="src/app/states" autocreate="true" />
+                </changeset>
+            </structure>
+        </workspace>
+    </workspaces>
+</qtemplate>

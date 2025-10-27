@@ -1,0 +1,9 @@
+quarkus:
+  banner:
+    enabled: false
+  log:
+    console:
+      enabled: false
+    category:
+      io.quarkus.arc:
+        level: DEBUG

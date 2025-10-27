@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qtemplate>
+    <workspaces>
+        <workspace>
+            <general>
+                <framework>kotlin</framework>
+                <projectName>my-ktor-api</projectName>
+                <projectPackage>com.example.ktor</projectPackage>
+                <frameworkVersion>3.0.3</frameworkVersion>
+                <cliArgs>--ktor --kotlin-version=2.1.0 --ktor-version=3.0.3</cliArgs>
+            </general>
+            
+            <!-- Prerequisites for Kotlin/Ktor -->
+            <dependencies name="pre">
+                <java>21+</java>
+                <gradle>8+</gradle>
+            </dependencies>
+            
+            <!-- Post-generation dependencies -->
+            <dependencies name="post">
+                <kotlinx-datetime packageName="org.jetbrains.kotlinx:kotlinx-datetime" optional="true">0.6.1</kotlinx-datetime>
+                <exposed packageName="org.jetbrains.exposed:exposed-core" optional="true">0.55.0</exposed>
+                <h2 packageName="com.h2database:h2" optional="true">2.2.224</h2>
+            </dependencies>
+            
+            <!-- Custom modifications -->
+            <structure value="custom">
+                <changeset type="add">
+                    <path name="gradle.properties"><![CDATA[
+kotlin_version=2.1.0
+ktor_version=3.0.3
+logback_version=1.4.14
+
+org.gradle.jvmargs=-Xmx2g -XX:+UseParallelGC
+org.gradle.parallel=true
+org.gradle.caching=true
+                    ]]></path>
+                </changeset>
+                <changeset type="add">
+                    <path name="README.md"><![CDATA[
+# My Ktor API
+
+A Kotlin web application using Ktor framework, created with qBoot.
+
+## Getting Started
+
+### Prerequisites
+- Java 21+
+- Gradle 8+
+
+### Running the Application
+
+```bash
+./gradlew run
+```
+
+The server will start on http://localhost:8080
+
+### Available Endpoints
+
+- `GET /` - Welcome message
+- `GET /health` - Health check endpoint
+
+### Testing
+
+```bash
+./gradlew test
+```
+
+## Features
+
+- Ktor 3.0.3 web framework
+- Kotlin 2.1.0
+- Content negotiation with JSON serialization
+- Structured logging with Logback
+- Gradle build system
+- Cross-platform compatibility
+
+## Learn More
+
+- [Ktor Documentation](https://ktor.io/docs/)
+- [Kotlin Documentation](https://kotlinlang.org/docs/)
+- [Gradle Documentation](https://docs.gradle.org/)
+                    ]]></path>
+                </changeset>
+            </structure>
+        </workspace>
+    </workspaces>
+</qtemplate>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qtemplate>
+    <workspaces>
+        <workspace>
+            <general>
+                <framework>react</framework>
+                <projectName>my-nextjs-app</projectName>
+                <frameworkVersion>latest</frameworkVersion>
+                <cliArgs>--nextjs --typescript --tailwind --eslint</cliArgs>
+            </general>
+            
+            <!-- Prerequisites for React/Next.js -->
+            <dependencies name="pre">
+                <node>18+</node>
+                <npm>9+</npm>
+            </dependencies>
+            
+            <!-- Post-generation dependencies -->
+            <dependencies name="post">
+                <axios packageName="axios" optional="true">1.7.2</axios>
+                <prettier packageName="prettier" optional="true" extension="true">3.0.3</prettier>
+                <jest packageName="@types/jest" optional="true" extension="true">29.5.5</jest>
+            </dependencies>
+            
+            <!-- Custom modifications -->
+            <structure value="custom">
+                <changeset type="add">
+                    <path name="README.md"><![CDATA[
+# My Next.js Application
+
+This is a Next.js application created with qBoot.
+
+## Getting Started
+
+First, install dependencies:
+```bash
+npm install
+```
+
+Then run the development server:
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Features
+
+- Next.js 14+ with App Router
+- TypeScript configuration
+- Tailwind CSS for styling
+- ESLint for code quality
+- Auto-configured with best practices
+
+## Learn More
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+                    ]]></path>
+                </changeset>
+                <changeset type="add">
+                    <path name=".env.local"><![CDATA[
+# Environment variables for local development
+NEXT_PUBLIC_API_URL=http://localhost:3001
+NEXT_PUBLIC_APP_NAME=My Next.js App
+                    ]]></path>
+                </changeset>
+            </structure>
+        </workspace>
+    </workspaces>
+</qtemplate>
