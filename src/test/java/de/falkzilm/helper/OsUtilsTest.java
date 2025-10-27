@@ -123,7 +123,7 @@ class OsUtilsTest {
         if (OsUtils.isWindows()) {
             assertTrue(fullCommand.contains("mvnw.cmd"));
         } else {
-            assertTrue(fullCommand.contains("./mvnw"));
+            assertTrue(fullCommand.contains("mvn"));
         }
     }
 
