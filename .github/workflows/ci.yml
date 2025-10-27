@@ -80,7 +80,7 @@ jobs:
           - os: windows-latest
             platform: windows
             artifact_name: qboot-windows.exe
-            build_cmd: ./mvnw.cmd package -Dnative -DskipTests -Dquarkus.native.container-build=false
+            build_cmd: ./mvnw.cmd package --% -Dnative -DskipTests -Dquarkus.native.container-build=false
 
     runs-on: ${{ matrix.os }}
     needs: test
